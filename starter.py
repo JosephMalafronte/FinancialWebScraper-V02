@@ -7,4 +7,5 @@ import time
 
 while(1):
 	exec(open("./boaParser2.py").read())
+	exec(open("./cryptoParser.py").read())
 	time.sleep(3800)
