@@ -1,3 +1,9 @@
+#Joseph Malafronte
+#Web Scraper for Crypto Currencies to find current value of owned coins
+#Place coin values in Google Sheets Spreadsheet using Google API
+#For personal non-profit use only
+
+
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import gspread
@@ -8,8 +14,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 print("Updating Cryptos...")
 
 
+#Access coinmarketcap website for information
 my_url = 'https://coinmarketcap.com/exchanges/binance/'
-
 uClient = uReq(my_url)
 page_html = uClient.read()
 uClient.close()
@@ -39,6 +45,8 @@ table3 = table2.findAll('tr')
 
 
 
+#Go through spreadsheet for list of coins owned
+#Add each coin to array
 coinsOwned = []
 i = 7
 for i in range(7,12):

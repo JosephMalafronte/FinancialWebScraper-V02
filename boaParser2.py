@@ -1,9 +1,10 @@
 #Joseph Malafronte
 #Web Scraper for BoA to find balance information for bank accounts
+#Place balance in Google Sheets Spreadsheet using Google API
 #For personal non-profit use only
-#Test
 
 
+#import libraries
 from selenium import webdriver 
 from selenium.webdriver.common.by import By 
 from selenium.webdriver.support.ui import WebDriverWait 
@@ -41,6 +42,7 @@ option.add_argument("--headless")
 browser = webdriver.Chrome(executable_path='/Users/josephmalafronte/ChromeDriver/chromedriver', chrome_options=option)
 
 
+#Load BoA Sign In Page
 browser.get("https://secure.bankofamerica.com/login/sign-in/signOnV2Screen.go") 
 
 
@@ -69,8 +71,6 @@ page_soup = soup(page_html, "html.parser")
 #grabs each product places into array
 containers = page_soup.findAll("div", {"class","AccountItem AccountItemDeposit"})
 
-filename = "testA.txt"
-myfile = open(filename, "w")
 for container in containers:
 	
 	balanceContainer = container.findAll("div", {"class","AccountBalance"})
@@ -78,15 +78,12 @@ for container in containers:
 	accountNameContainer = container.findAll("span", {"class","AccountName"})
 	accountName = accountNameContainer[0].a.text.strip()
 	
-
-	myfile.write("Balance: " + balance)
 	
+	#Cell locations must match google sheets spreadsheet
 	if(accountName == "Checking - 7532"): sheet.update_cell(80,5, balance)
 	elif(accountName == "Savings - 1082"): sheet.update_cell(81,5, balance)
 	elif(accountName == "Emergency Fund - 3246"): sheet.update_cell(82,5, balance)
 
-
-myfile.write("\n")
 
 
 

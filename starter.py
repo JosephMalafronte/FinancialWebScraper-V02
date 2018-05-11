@@ -1,9 +1,8 @@
 #Joseph Malafronte
-#Web Scraper for BoA to find balance information for bank accounts
+#Simple python program that calls cryptoParser.py and boaParser2.py every 30 minutes
 #For personal non-profit use only
 
 import time
-
 
 while(1):
 
