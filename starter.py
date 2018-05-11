@@ -6,6 +6,8 @@ import time
 
 
 while(1):
-	exec(open("./boaParser2.py").read())
+
+	#Need to add multiprocess support here
 	exec(open("./cryptoParser.py").read())
+	exec(open("./boaParser2.py").read())
 	time.sleep(3800)

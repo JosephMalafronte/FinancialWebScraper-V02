@@ -4,6 +4,10 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 
+
+print("Updating Cryptos...")
+
+
 my_url = 'https://coinmarketcap.com/exchanges/binance/'
 
 uClient = uReq(my_url)

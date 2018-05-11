@@ -13,6 +13,7 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import keyring, os, sys
 import gspread
+import requests
 from oauth2client.service_account import ServiceAccountCredentials
 
 
