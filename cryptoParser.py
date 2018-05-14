@@ -10,7 +10,6 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 
-
 print("Updating Cryptos...")
 
 
@@ -21,6 +20,7 @@ page_html = uClient.read()
 uClient.close()
 
 page_soup = soup(page_html, "html.parser") 
+
 
 
 #Access Google Sheet For Editing
@@ -55,7 +55,6 @@ for i in range(7,12):
 
 
 
-
 for container in table3:
 	name_container = container.findAll("td")
 	coinName = name_container[2].a.text.strip()
@@ -72,6 +71,22 @@ for container in table3:
 			sheet.update_cell(8,5, coinValue)
 		elif(coinName == "ETH/BTC"):
 			sheet.update_cell(12,5, coinValue)
+
+print("TEST")
+
+
+
+#Record Value of New Crypto Balance
+newValue = sheet.cell(22,5).value
+row = int(sheet.cell(50,12).value)
+date = sheet.cell(51,12).value
+newRow = row+1
+sheet.update_cell(row,14, str(newValue))
+sheet.update_cell(row,13, date)
+sheet.update_cell(50,12, str(newRow))
+
+
+
 
 	
 print("Cryptos Updated")
