@@ -45,34 +45,37 @@ table3 = table2.findAll('tr')
 
 
 
+class cryptoInfo:
+	name = ""
+	col = 0
+
 #Go through spreadsheet for list of coins owned
 #Add each coin to array
 coinsOwned = []
+coinNames = []
 i = 7
 for i in range(7,12):
-	insValue = sheet.cell(i,1).value
-	if(insValue != ""): coinsOwned.append(insValue)
+	ins = cryptoInfo()
+	ins.name = sheet.cell(i,1).value
+	ins.col = i
+	if(ins.name != ""): 
+		coinsOwned.append(ins)
+		coinNames.append(ins.name)
+
 
 
 
 for container in table3:
+	#Get info
 	name_container = container.findAll("td")
 	coinName = name_container[2].a.text.strip()
 	coinValue = name_container[4].span.text.strip()
 
 
-	if(coinName in coinsOwned):
-		#Ew hardcode fix later
-		if(coinName == "VEN/ETH"):
-			sheet.update_cell(10,5, coinValue)
-		elif(coinName == "NANO/ETH"):
-			sheet.update_cell(9,5, coinValue)
-		elif(coinName == "XRP/ETH"):
-			sheet.update_cell(8,5, coinValue)
-		elif(coinName == "ETH/BTC"):
-			sheet.update_cell(12,5, coinValue)
-
-print("TEST")
+	for x in coinsOwned:
+		if(x.name==coinName):
+			print(x.name)
+			sheet.update_cell(x.col,5, coinValue)
 
 
 
@@ -86,11 +89,6 @@ sheet.update_cell(row,13, date)
 sheet.update_cell(50,12, str(newRow))
 
 
-
-
 	
 print("Cryptos Updated")
 	
-
-
-
