@@ -80,11 +80,13 @@ for container in table3:
 newValue = sheet.cell(22,5).value
 row = int(sheet.cell(50,12).value)
 date = sheet.cell(51,12).value
+lastDate = sheet.cell(row-1,13).value
+if(date == lastDate):
+	row = row-1
 newRow = row+1
 sheet.update_cell(row,14, str(newValue))
 sheet.update_cell(row,13, date)
 sheet.update_cell(50,12, str(newRow))
-
 
 	
 print("Cryptos Updated")
