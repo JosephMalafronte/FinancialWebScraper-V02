@@ -19,6 +19,7 @@ import requests
 from oauth2client.service_account import ServiceAccountCredentials
 
 
+
 #Access Google Sheet For Editing
 scope = ['https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive']
@@ -26,6 +27,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json',sc
 client = gspread.authorize(creds)
 
 sheet = client.open('Finances').sheet1
+
 
 #Get secure password from keyring
 #Only authorized users so this program can not be used malicously 

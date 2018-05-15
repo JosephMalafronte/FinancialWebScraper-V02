@@ -33,8 +33,6 @@ sheet = sheet1.get_worksheet(1)
 
 
 
-
-
 #grabs each product places into array
 containers = page_soup.findAll("tr", {"class","ng-scope"})
 
@@ -74,7 +72,6 @@ for container in table3:
 
 	for x in coinsOwned:
 		if(x.name==coinName):
-			print(x.name)
 			sheet.update_cell(x.col,5, coinValue)
 
 
