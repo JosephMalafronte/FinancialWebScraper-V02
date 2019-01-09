@@ -6,19 +6,36 @@ chrome.runtime.onInstalled.addListener(function() {
 
 
 
-let runBoa = document.getElementById('boaCall');
+//Read op number from spreadsheet?s
+var opNumber = 6;
 
-var value = 1;
+var triggerString;
 
-runBoa.onclick = function(element) {
 
-	chrome.storage.local.get(['key'], function(result) {
+
+document.addEventListener('DOMContentLoaded', function() {
+    var link = document.getElementById('link');
+    // onClick's logic below:
+    link.addEventListener('click', function() {
+        runBoa();
+    });
+});
+
+runBoa = function(){
+  chrome.storage.local.get(['key'], function(result) {
           console.log('Value currently is ' + result.key);
+          opNumber = result.key;
         });
 
+  triggerString = "Trigger"
+  localStorage.setItem("secret message" + opNumber.toString(), triggerString);
 
-	console.log("test")
-	chrome.storage.local.set({key: value}, function() {
-          console.log('Value is set to ' + value);
+  opNumber += 1;
+  chrome.storage.local.set({key: opNumber}, function() {
+          console.log('Value is set to ' + opNumber);
         });
-  };
+};
+
+
+
+  
